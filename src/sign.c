@@ -132,7 +132,8 @@ int crypto_sign_open(
 
     unpack_public_key(pk, param,  h);
 
-    unpack_public_key(sm, param,  sig);
+    if (unpack_public_key(sm, param,  sig)!=0)
+        return -1;
 
     if(verify(sig, m, *mlen, h,buf,param)!=0)
     {
